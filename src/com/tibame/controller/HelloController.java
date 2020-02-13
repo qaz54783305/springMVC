@@ -17,7 +17,7 @@ public class HelloController implements Controller {
 
 	public String getErrorPage() {   
 		return errorPage;
-	}         
+	}              
 
 	public void setErrorPage(String errorPage) {
 		this.errorPage = errorPage;
