@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+<context:component-scan base-package="com.tibame.domain"/>
+<context:component-scan base-package="com.tibame.controller"/>
+<!-- 佈署mvc Controller dispatcher View(放在哪裡?/附檔名是? -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 屬性設定prefix dispatcher file path -->
+		<property name="prefix">
+			<value>/WEB-INF/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	<bean name="/hello.action" class="com.tibame.controller.HelloController">
+		<property name="viewPage" value="customers"/>
+	</bean>
+	<!-- 部署Controller(Spring bean) Front End概念 具有網路位址 -->
+	<bean name="/uservalid.action"  class="com.tibame.controller.HelloController">
+		<!-- 設定成功派送的View Name -->
+		<property name="viewPage" value="ok"/>
+		<!-- 驗證失敗要派送View -->
+		<property name="errorPage" value="fail"/>
+	</bean>
+</beans>
