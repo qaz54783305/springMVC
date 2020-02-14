@@ -17,10 +17,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @WebServlet("/uservalid")
 public class UserValidServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext"); 
+    private ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml"); 
 	
 	
-	
+ 
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -48,9 +48,10 @@ public class UserValidServlet extends HttpServlet {
 		//2.進行帳號驗證
 		JdbcTemplate dao =context.getBean("jdbcTemplate",JdbcTemplate.class);
 		//查詢使用者
-		String sql="SELECT username FROM member where username=? AND password=?";
+		String sql="SELECT  count(*) username FROM member where username=? AND password=?";
 		//query ->找多筆 queryForObject ->找一筆
 		int result = dao.queryForInt(sql, userName, passWord);
+		System.out.println("result==="+result);
 		if(result>0) {
 		//是會員 派送畫面
         String msg = String.format("%s 會員驗證通過!!!", userName);

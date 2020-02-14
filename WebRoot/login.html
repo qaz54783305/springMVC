@@ -8,21 +8,44 @@
     <meta name="content-type" content="text/html; charset=BIG5">
     
     <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script  type="text/javascript">
+    	//window.alert('開始了....');
+    	//自訂一個函數 函數呈現一個相對日期與時間
+    	function showDate(){
+    		var curDate=new Date();
+    		//alert(curDate);
+    	}
+    	//登入按鈕引發事件程序
+    	function valid()
+    	{
+    		//使用DOM取出使用者名稱與密碼
+    		
+    		elUserName=document.getElementById('userName');
+    		userName=elUserName.value;
+    		password=document.getElementById('passWord').value;
+    		//進行資料是否輸入驗證
+    		if(elUserName.length==0 || password.length==0){
+    			alert('登入資料輸入不完整!!');
+    			//煞車
+    			return false;
+    		}
+    	}
+    </script>
 
   </head>
     
-  <body>
+  <body onload="showDate()">
    <fieldset>
    <legend>登入作業</legend>
-<!--    <form method="post" action="uservalid"> -->
-   <form method="post" action="uservalid.action">
+   <form method="post" action="uservalid">
+<!--    <form method="post" action="uservalid.action"> -->
    <label>使用者名稱</label>
-   <input type = "text" name="userName"/>
+   <input type = "text" name="userName" id="userName"/>
    <br/>
    <label>使用者密碼</label>
-   <input type = "password" name="password"/>
+   <input type = "password" name="passWord" id="passWord"/>
    <br/>
-   <input type = "submit" value="登入"/>
+   <input type = "submit" value="登入" onclick="return valid()"/>
    </form>
    
    
